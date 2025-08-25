@@ -35,4 +35,24 @@ class LangChain(object):
         return result
     
     def find_similarity(self):
-        docs = self.vector_store.similarity_search("Objectives Development Process", k=2)
+        docs = self.vector_store.similarity_search(self.prompt, k=2)
+
+        for doc in docs:
+            ...
+
+        result = agent_pdf.invoke({
+            "messages": [
+                ("user", "What causes dengue?")
+            ]
+        })
+
+    def chat_with_memory(message_user: str, thread_id="1", verbose=False):
+        config = {"configurable": {"thread_id": thread_id}}
+        messages = app.invoke({"messages": [HumanMessage(content=message_user)]}, config)
+
+    if verbose:
+        for message in messages['messages']:
+            message.pretty_print()
+    else:
+        messages['messages'][-1].pretty_print()
+        
